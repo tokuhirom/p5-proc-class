@@ -14,3 +14,4 @@ STDIN
 argv
 env
 pm
+ok
