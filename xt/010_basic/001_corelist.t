@@ -14,5 +14,9 @@ $proc->close_stdin;
 like $proc->slurp_stdout, qr/\Qfoo was not in CORE (or so I think)/;
 is $proc->slurp_stderr, '';
 
+my $status = $proc->waitpid;
+ok $status->is_exited;
+is $status->exit_status, 0;
+
 done_testing;
 

@@ -4,7 +4,7 @@ our $VERSION = '0.01';
 use 5.008001;
 our @EXPORT = qw/test_script/;
 use IO::Pipe; # IO::Pipe was first released with perl 5.00307
-use Test::Spawn::Status;
+use Proc::Class::Status;
 
 has stdin => (
     is => 'rw',
@@ -56,31 +56,6 @@ sub BUILD {
     $self->stderr($err);
 
     %ENV = %env_backup; # restore
-
-#   my $in  = IO::Pipe->new;
-#   my $out = IO::Pipe->new;
-#   my $err = IO::Pipe->new;
-#   my $pid = fork();
-#   if ($pid == 0) { # child
-#       *STDIN  = $in->reader;
-#       *STDOUT = $out->writer;
-#       *STDERR = $err->writer;
-#       %ENV = %{$self->env};
-#       exec $self->cmd, @{ $self->argv } or print STDERR "couldn't exec foo: $!";
-#       die "should not reache here";
-#   } elsif ($pid > 0) { # parent
-#       $in->writer;
-#       $out->reader;
-#       $err->reader;
-
-#       $self->stdin($in);
-#       $self->stdout($out);
-#       $self->stderr($err);
-#       $self->pid($pid);
-#       return $self;
-#   } else {
-#       die "cannnot fork: $!";
-#   }
 }
 
 sub print_stdin {
@@ -115,7 +90,7 @@ sub slurp_stderr {
 sub waitpid {
     my $self = shift;
     waitpid($self->{pid}, 0);
-    return Test::Spawn::Status->new(status => $?);
+    return Proc::Class::Status->new(status => $?);
 }
 
 no Any::Moose;
