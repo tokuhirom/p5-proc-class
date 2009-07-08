@@ -1,6 +1,6 @@
 package Proc::Class;
 use Any::Moose;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 use 5.008001;
 our @EXPORT = qw/test_script/;
 use Proc::Class::Status;
