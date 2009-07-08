@@ -122,6 +122,8 @@ Proc::Class - OO interface for process management
 
 Proc::Class is a simple OO wrapper for IPC::Open3, POSIX.pm, and more.
 
+B<THIS MODULE IS IN ITS BETA QUALITY. THE API MAY CHANGE IN THE FUTURE>
+
 =head1 METHODS
 
 =over 4
