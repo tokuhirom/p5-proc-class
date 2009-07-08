@@ -43,8 +43,7 @@ has argv => (
 sub BUILD {
     my $self = shift;
 
-    my %env_backup = %ENV;
-    %ENV = %{ $self->env };
+    local %ENV = (%ENV, %{ $self->env });
 
     my ($in, $out, $err);
     my $pid = IPC::Open3::open3($in, $out, $err, $self->cmd, @{ $self->argv });
@@ -52,8 +51,6 @@ sub BUILD {
     $self->stdin($in);
     $self->stdout($out);
     $self->stderr($err);
-
-    %ENV = %env_backup; # restore
 }
 
 sub print_stdin {
@@ -114,7 +111,7 @@ Proc::Class - OO interface for process management
     is $script->slurp_stdout(), '';
     is $script->slurp_stderr(), '';
 
-    my $status = $script->wait;
+    my $status = $script->waitpid;
     ok $status->is_exited();
     is $status->exit_status(), 0;
 
@@ -151,6 +148,11 @@ slurp() from child process' *STDERR.
 =item my $txt = $script->slurp_stderr();
 
 slurp() from child process' *STDERR.
+
+=item my $status = $script->waitpid();
+
+Waits for a particular child process to terminate and returns the pid of the deceased process.
+Returns Proc::Class::Status object.
 
 =back
 
