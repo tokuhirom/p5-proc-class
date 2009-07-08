@@ -8,3 +8,9 @@ __DATA__
 Tokuhiro Matsuno
 tokuhirom  slkjfd gmail.com
 Proc::Class
+OO
+POSIX
+STDIN
+argv
+env
+pm

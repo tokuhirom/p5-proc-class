@@ -5,6 +5,7 @@ use 5.008001;
 our @EXPORT = qw/test_script/;
 use IO::Pipe; # IO::Pipe was first released with perl 5.00307
 use Proc::Class::Status;
+use IPC::Open3 qw/open3/;
 
 has stdin => (
     is => 'rw',
@@ -39,7 +40,6 @@ has argv => (
     isa => 'ArrayRef',
     default => sub { +[] },
 );
-use IPC::Open3 qw/open3/;
 
 sub BUILD {
     my $self = shift;
@@ -99,7 +99,7 @@ __END__
 
 =head1 NAME
 
-Proc::Class -
+Proc::Class - OO interface for process management
 
 =head1 SYNOPSIS
 
@@ -122,13 +122,45 @@ Proc::Class -
 
 =head1 DESCRIPTION
 
-Proc::Class is
+Proc::Class is a simple OO wrapper for IPC::Open3, POSIX.pm, and more.
+
+=head1 METHODS
+
+=over 4
+
+=item my $script = Test::Spawn->new( command => '/path/to/script', env => \%env, argv => \@args );
+
+create a new script object.
+
+=item $script->print_stdin($txt);
+
+pass $txt to child process' STDIN
+
+=item $script->close_stdin();
+
+close child process' *STDIN.
+
+=item my $txt = $script->slurp_stdout();
+
+slurp() from child process' *STDOUT.
+
+=item my $txt = $script->slurp_stderr();
+
+slurp() from child process' *STDERR.
+
+=item my $txt = $script->slurp_stderr();
+
+slurp() from child process' *STDERR.
+
+=back
 
 =head1 AUTHOR
 
 Tokuhiro Matsuno E<lt>tokuhirom  slkjfd gmail.comE<gt>
 
 =head1 SEE ALSO
+
+L<Proc::Open3>
 
 =head1 LICENSE
 
