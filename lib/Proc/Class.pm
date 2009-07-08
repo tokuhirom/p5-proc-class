@@ -3,7 +3,6 @@ use Any::Moose;
 our $VERSION = '0.01';
 use 5.008001;
 our @EXPORT = qw/test_script/;
-use IO::Pipe; # IO::Pipe was first released with perl 5.00307
 use Proc::Class::Status;
 use IPC::Open3 qw/open3/;
 
@@ -43,7 +42,6 @@ has argv => (
 
 sub BUILD {
     my $self = shift;
-    $SIG{PIPE} = "IGNORE"; # XXX
 
     my %env_backup = %ENV;
     %ENV = %{ $self->env };
