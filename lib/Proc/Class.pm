@@ -128,7 +128,7 @@ B<THIS MODULE IS IN ITS BETA QUALITY. THE API MAY CHANGE IN THE FUTURE>
 
 =over 4
 
-=item my $script = Test::Spawn->new( command => '/path/to/script', env => \%env, argv => \@args );
+=item my $script = Test::Spawn->new( cmd => '/path/to/script', env => \%env, argv => \@args );
 
 create a new script object.
 
