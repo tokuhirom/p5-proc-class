@@ -4,7 +4,7 @@ our $VERSION = '0.02';
 use 5.008001;
 our @EXPORT = qw/test_script/;
 use Proc::Class::Status;
-use IPC::Open3 qw/open3/;
+use IPC::Open3 ();
 
 has stdin => (
     is => 'rw',
