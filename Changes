@@ -1,5 +1,9 @@
 Revision history for Perl extension Proc::Class
 
+0.03
+
+        - added $proc->kill('KILL')
+
 0.02
 
         - pass orignal environment variables to child process
