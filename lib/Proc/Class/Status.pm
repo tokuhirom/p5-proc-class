@@ -1,4 +1,6 @@
 package Proc::Class::Status;
+use strict;
+use warnings;
 use Any::Moose;
 use 5.008001;
 use POSIX;
