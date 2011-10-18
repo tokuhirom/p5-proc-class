@@ -19,6 +19,6 @@ my $build = Module::Build->new(
     module_name => 'Proc::Class',
     abstract      => 'OO interface for process management',
     create_readme => 1,
-    test_files    => -d '.git' ? 't/ xt/' : 't/',
+    test_files    => (-d '.git' || $ENV{RELEASE_TESTING}) ? 't/ xt/' : 't/',
 );
 $build->create_build_script();
