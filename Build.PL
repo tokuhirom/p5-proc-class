@@ -20,5 +20,10 @@ my $build = Module::Build->new(
     abstract      => 'OO interface for process management',
     create_readme => 1,
     test_files    => (-d '.git' || $ENV{RELEASE_TESTING}) ? 't/ xt/' : 't/',
+    meta_merge => {
+        resources => {
+            repository => 'https://github.com/tokuhirom/p5-proc-class'
+        }
+    },
 );
 $build->create_build_script();
